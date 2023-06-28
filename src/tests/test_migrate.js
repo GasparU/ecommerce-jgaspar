@@ -1,5 +1,6 @@
 const sequelize = require('../utils/connection');
 const user = require('./createData/user')
+require('../models/Category')
 
 const main = async() => {
     try{
