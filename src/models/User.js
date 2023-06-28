@@ -13,7 +13,8 @@ const User = sequelize.define('user', {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     password: {
         type: DataTypes.STRING,
@@ -32,7 +33,7 @@ User.prototype.toJSON = function () {
 }
 
 User.beforeCreate(async(user)=>{
-    const hashPassword = await bcryp.hash(password,10)
+    const hashPassword = await bcryp.hash(user.password,10)
     user.password = hashPassword
 })
 
