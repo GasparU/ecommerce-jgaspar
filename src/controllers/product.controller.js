@@ -8,7 +8,7 @@ const getAll = catchError(async(req, res) => {
     if(category) where.categoryId = category
     const results = await Product.findAll({
         include:[Category],
-        where                                 // where : where  // where:{categoryId:category}
+        where                         // where : where  // where:{categoryId:category}
     });
     return res.json(results);
 });
