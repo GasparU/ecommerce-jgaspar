@@ -66,7 +66,6 @@ test("GET ->'BASE_UR?category = category.id' should status code 200 and res.body
     const res = await request(app)
         .get(`${BASE_URL_PRODUCTS}?category=${category.id}`)
 
-    console.log(res.body)
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
     expect(res.body[0]).toBeDefined()

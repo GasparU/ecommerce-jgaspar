@@ -21,7 +21,6 @@ const create = catchError(async(req, res) => {
 
 // const create = catchError(async(req, res) => {
 //     const url = req.protocol + "://" + req.headers.host + "/uploads/" + req.file.filename; // req.protocol = http o https (segun sea el render o cualquier otro espacio de alojamiento)   // req.headers.host = localhost:8080  // req.file.filename = archivo.jpg
-//     console.log(req.protocol)
 // 	const filename = req.file.filename;
 
 //     const body = {url, filename}
@@ -34,7 +33,7 @@ const remove = catchError(async(req, res) => {
     const { id } = req.params;
     const image = await ProductImg.findByPk(id);
     if(!image) return res.sendStatus(404);
-    await deleteFromCloudinary(image.public_id);
+    await deleteFromCloudinary(image.filename);
     await image.destroy();
     return res.sendStatus(204);
 });

@@ -8,7 +8,7 @@ const getAll = catchError(async(req, res) => {
     const where = {}
     if(category) where.categoryId = category
     // si en petición no se pasa query (no filtramos nada) el where es vacio (where = { } ), pero si existe filtrado por query, se convierte en where = {categoryId : 3} (en postman se filtro por id = 3 con '/api/v1/products?category=3'), por ello, podemos reemplazas where : {categoryId : 3} por where : where, y esto a su ves en where.
-    console.log(where)
+    // console.log(where)
     const results = await Product.findAll({
         include:[Category, ProductImg],
         where                         // where : where  // where:{categoryId:category}   (probar con const pepito ={} en la linea 7 y de para recordar un console.log(pepito o where))

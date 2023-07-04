@@ -1,10 +1,11 @@
 const request = require('supertest')
 const app = require('../app')
 const path = require('path')
+
 const BASE_URL_USERS = '/api/v1/users/login'
 const BASE_URL_PRODUCT_IMG = '/api/v1/product_images'
 let TOKEN
-let productImgid
+let productImgId
 
 beforeAll(async()=>{
     const user = {
@@ -16,13 +17,12 @@ beforeAll(async()=>{
         .post(BASE_URL_USERS)
         .send(user)
 
-    TOKEN = res.body.token
-            
+    TOKEN = res.body.token         
 })
 
 test("POST -> 'BASE_URL_PRODUCT_IMG' should return status code 201 and rest.body.url and res.body.filename to be defined",async()=>{
-    const imagePath = path.join(__dirname, '..','public','cocina.jpg')
 
+    const imagePath = path.join(__dirname, '..','public','cocina.jpg')
 
     const res = await request(app)
         .post(BASE_URL_PRODUCT_IMG)
@@ -30,10 +30,12 @@ test("POST -> 'BASE_URL_PRODUCT_IMG' should return status code 201 and rest.body
         .attach('image',imagePath )
 
 
-    productImgid = res.body.id
+    productImgId = res.body.id
+
     expect(res.status).toBe(201)
     expect(res.body.url).toBeDefined()
     expect(res.body.filename).toBeDefined()
+
 })
 
 test("GET -> 'BASE_URL_PRODUCT_IMG', sholud status code 200 and res.body.length === 1", async()=>{
@@ -47,10 +49,11 @@ test("GET -> 'BASE_URL_PRODUCT_IMG', sholud status code 200 and res.body.length 
 
 })
 
+
 test("DELETE ->'BASE_UR' should status code 200 and res.body.length ===1   ",async()=>{
 
     const res = await request(app)
-        .delete(`${BASE_URL_PRODUCT_IMG}/${productImgid}`)
+        .delete(`${BASE_URL_PRODUCT_IMG}/${productImgId}`)
         .set("Authorization", `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(204)
