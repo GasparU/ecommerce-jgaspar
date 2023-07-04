@@ -16,7 +16,7 @@ app.use(helmet({
 }));
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'public')))  // stule.css
+app.use(express.static(path.join(__dirname, 'public')))    // /style.css
 
 
 app.use('/api/v1', router);

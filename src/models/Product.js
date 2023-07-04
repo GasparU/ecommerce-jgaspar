@@ -14,6 +14,7 @@ const Product = sequelize.define('product', {
         type: DataTypes.DECIMAL,
         allowNull: false
     }
+    // categoryId
 });
 
 module.exports = Product;
