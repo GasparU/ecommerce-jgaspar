@@ -3,7 +3,7 @@ const ProductImg = require('../models/ProductImg');
 // const fs = require('fs');
 // const path = require('path');
 
-
+// LO QUE SE USA ES LO QUE ESTA COMENTADO, SOLO PARA TEMA DEL CURSO SE PONE OTRO CODIGO YA QUE SE USA CLOUDINARY, PERO NORMALMENTE ES LO QUE ESTA COMENTADO.
 const { uploadToCloudinary, deleteFromCloudinary } = require('../utils/cloudinary');
 
 const getAll = catchError(async(req, res) => {
